@@ -12,6 +12,7 @@ export function getMockMarketplaceListings(): MarketplaceListing[] {
     left: "https://example.com/images/cow1.jpg",
     back: "https://example.com/images/cow1.jpg",
     right: "https://example.com/images/cow1.jpg",
+    teeth: "https://example.com/images/cow1.jpg",
   });
   
   const assessment2 = generateMockAssessment({
@@ -19,6 +20,7 @@ export function getMockMarketplaceListings(): MarketplaceListing[] {
     left: "https://example.com/images/cow2.jpg",
     back: "https://example.com/images/cow2.jpg",
     right: "https://example.com/images/cow2.jpg",
+    teeth: "https://example.com/images/cow2.jpg",
   });
 
   const listings: MarketplaceListing[] = [

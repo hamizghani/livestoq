@@ -1,8 +1,13 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { TopNav, BottomNav } from "@/components/Navigation";
+import { useAuth } from "@/components/AuthContext";
 
 export default function Home() {
+  const { isAuthenticated } = useAuth();
+
   return (
     <div className="min-h-screen bg-white">
       <TopNav />
@@ -13,10 +18,10 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             <div className="text-center lg:text-left">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-                Redefining the way livestock is trusted
+                 Redefining the way livestock is bought, sold, and trusted
               </h1>
               <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-2xl mx-auto lg:mx-0">
-                AI-assisted livestock marketplace designed to reduce transaction fraud. 
+              AI Computer Vision for a safer Livestock Trading through Animal-Level Verification 
                 Verify the animal, not the claim.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -33,6 +38,22 @@ export default function Home() {
                   Browse Marketplace
                 </Link>
               </div>
+              {!isAuthenticated && (
+                <div className="mt-6 flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <Link
+                    href="/login"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition-all text-base"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    href="/signup"
+                    className="inline-flex items-center justify-center px-6 py-3 bg-white text-gray-900 font-semibold rounded-lg border-2 border-gray-900 hover:bg-gray-50 transition-all text-base"
+                  >
+                    Create Account
+                  </Link>
+                </div>
+              )}
             </div>
             <div className="relative">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl aspect-[4/3]">
@@ -100,6 +121,97 @@ export default function Home() {
               <p className="text-gray-600 leading-relaxed">
                 List with confidence or browse verified animals in our trusted marketplace
               </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Stoqy Section */}
+      <section className="px-4 py-12 sm:py-16 bg-white">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+            <div className="order-2 lg:order-1">
+              <div className="bg-gradient-to-br from-primary-50 to-white rounded-2xl p-8 border border-primary-100">
+                <div className="flex items-center space-x-3 mb-4">
+                  <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center">
+                    <span className="text-3xl">🤖</span>
+                  </div>
+                  <div>
+                    <h2 className="text-2xl font-bold text-gray-900">Stoqy</h2>
+                    <p className="text-sm text-gray-600">Livestoq Personal AI Assistant</p>
+                  </div>
+                </div>
+                <p className="text-lg text-gray-700 mb-6 leading-relaxed">
+                  Your 24/7 digital livestock consultant. Get real-time guidance on health, care, 
+                  feeding, nutrition, medicine, and marketplace questions.
+                </p>
+                <ul className="space-y-3 mb-6">
+                  <li className="flex items-start space-x-3">
+                    <svg className="w-5 h-5 text-primary-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-gray-700">Livestock health and care advice</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <svg className="w-5 h-5 text-primary-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-gray-700">Feeding and nutrition recommendations</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <svg className="w-5 h-5 text-primary-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-gray-700">Medicine and vitamin suggestions</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <svg className="w-5 h-5 text-primary-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-gray-700">Marketplace assistance</span>
+                  </li>
+                  <li className="flex items-start space-x-3">
+                    <svg className="w-5 h-5 text-primary-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    <span className="text-gray-700">General livestock management Q&A</span>
+                  </li>
+                </ul>
+                <Link
+                  href="/ask"
+                  className="inline-flex items-center justify-center px-6 py-3 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700 transition-all transform hover:scale-105 shadow-lg"
+                >
+                  Try Stoqy Now
+                </Link>
+              </div>
+            </div>
+            <div className="order-1 lg:order-2">
+              <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl p-8 border border-gray-200 shadow-lg">
+                <div className="space-y-4">
+                  <div className="bg-white rounded-lg p-4 border border-gray-200 shadow-sm">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-8 h-8 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-sm">👤</span>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm text-gray-700">What vitamins should I give my cow?</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="bg-primary-50 rounded-lg p-4 border border-primary-200 shadow-sm ml-8">
+                    <div className="flex items-start space-x-3">
+                      <div className="w-8 h-8 bg-primary-600 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span className="text-sm">🤖</span>
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm text-gray-700">
+                          For healthy cows, I recommend vitamin A, D, and E supplements. Vitamin A supports vision and immune function...
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

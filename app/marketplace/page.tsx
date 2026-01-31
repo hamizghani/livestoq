@@ -3,6 +3,7 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { TopNav, BottomNav } from "@/components/Navigation";
+import { useAuth } from "@/components/AuthContext";
 import { VerifiedBadge, NotVerifiedBadge } from "@/components/Badges";
 import { MarketplaceListing } from "@/lib/types";
 import { store } from "@/lib/store";
@@ -12,6 +13,7 @@ type FilterType = "all" | "verified" | "not-verified";
 type SpeciesFilter = "all" | "cow" | "goat" | "sheep" | "lamb";
 
 export default function MarketplacePage() {
+  const { isAuthenticated } = useAuth();
   const [listings] = useState<MarketplaceListing[]>(
     store.getMarketplaceListings()
   );
@@ -47,12 +49,21 @@ export default function MarketplacePage() {
       <div className="max-w-6xl mx-auto px-4 py-8">
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-3xl font-bold text-gray-900">Marketplace</h1>
-          <Link
-            href="/marketplace/create"
-            className="px-4 py-2 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700"
-          >
-            + Create Listing
-          </Link>
+          {isAuthenticated ? (
+            <Link
+              href="/marketplace/create"
+              className="px-4 py-2 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700"
+            >
+              + Create Listing
+            </Link>
+          ) : (
+            <Link
+              href="/login?redirect=/marketplace/create"
+              className="px-4 py-2 bg-primary-600 text-white rounded-lg font-semibold hover:bg-primary-700"
+            >
+              + Create Listing
+            </Link>
+          )}
         </div>
 
         {/* Filters */}

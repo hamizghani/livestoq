@@ -1,6 +1,6 @@
 # Livestoq
 
-**Redefining the way livestock is trusted.**
+**Redefining the way livestock is traded.**
 
 An AI-assisted livestock marketplace designed to reduce livestock transaction fraud by providing animal-level verification through a multi-angle scan workflow.
 

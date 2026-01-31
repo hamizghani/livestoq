@@ -123,23 +123,29 @@ export default function ListingDetailPage() {
               <div className="border-b border-gray-200 pb-4">
                 <div className="flex items-center justify-between mb-2">
                   <span className="text-sm font-medium text-gray-500">
-                    Age Eligibility
+                    Age
                   </span>
                   <ConfidenceBadge
                     confidence={listing.assessment.confidence.ageEligibility}
                   />
                 </div>
-                <p
-                  className={`text-xl font-semibold ${
-                    listing.assessment.prediction.ageEligibility === "Eligible"
-                      ? "text-green-600"
-                      : listing.assessment.prediction.ageEligibility ===
-                        "Borderline"
-                      ? "text-yellow-600"
-                      : "text-red-600"
-                  }`}
-                >
-                  {listing.assessment.prediction.ageEligibility}
+                <p className="text-xl font-semibold text-gray-900">
+                  {listing.assessment.prediction.ageEligibility} months
+                </p>
+              </div>
+
+              {/* Gender */}
+              <div className="border-b border-gray-200 pb-4">
+                <div className="flex items-center justify-between mb-2">
+                  <span className="text-sm font-medium text-gray-500">
+                    Gender
+                  </span>
+                  <ConfidenceBadge
+                    confidence={listing.assessment.confidence.gender}
+                  />
+                </div>
+                <p className="text-xl font-semibold text-gray-900 capitalize">
+                  {listing.assessment.prediction.gender}
                 </p>
               </div>
 
@@ -169,7 +175,7 @@ export default function ListingDetailPage() {
                   />
                 </div>
                 <p
-                  className={`text-xl font-semibold ${
+                  className={`text-xl font-semibold mb-2 ${
                     listing.assessment.prediction.healthRisk === "Low"
                       ? "text-green-600"
                       : listing.assessment.prediction.healthRisk === "Medium"
@@ -179,6 +185,11 @@ export default function ListingDetailPage() {
                 >
                   {listing.assessment.prediction.healthRisk}
                 </p>
+                {listing.assessment.prediction.healthRiskExplanation && (
+                  <p className="text-sm text-gray-600 italic">
+                    {listing.assessment.prediction.healthRiskExplanation}
+                  </p>
+                )}
               </div>
 
               {/* Fair Price Range */}

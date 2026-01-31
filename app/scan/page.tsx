@@ -12,6 +12,7 @@ const ANGLES: Array<{ key: Angle; label: string; icon: string }> = [
   { key: "left", label: "Left Side", icon: "⬅️" },
   { key: "back", label: "Back", icon: "⬇️" },
   { key: "right", label: "Right Side", icon: "➡️" },
+  { key: "teeth", label: "Teeth", icon: "🦷" },
 ];
 
 export default function ScanPage() {
@@ -42,8 +43,8 @@ export default function ScanPage() {
 
   const handleAnalyze = async () => {
     const allImages = images as Record<Angle, string>;
-    if (Object.keys(allImages).length !== 4) {
-      alert("Please capture all 4 angles before analyzing.");
+    if (Object.keys(allImages).length !== 5) {
+      alert("Please capture all 5 angles (including teeth) before analyzing.");
       return;
     }
 
@@ -62,7 +63,7 @@ export default function ScanPage() {
     router.push(`/scan/results?id=${assessment.id}`);
   };
 
-  const allImagesCaptured = Object.keys(images).length === 4;
+  const allImagesCaptured = Object.keys(images).length === 5;
   const currentAngle = ANGLES[currentStep];
 
   return (
@@ -190,7 +191,7 @@ export default function ScanPage() {
             <h3 className="text-sm font-semibold text-gray-700 mb-3">
               Captured Images
             </h3>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-5 gap-2">
               {ANGLES.map((angle) => (
                 <div
                   key={angle.key}

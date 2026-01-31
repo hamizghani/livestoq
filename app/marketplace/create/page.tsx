@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { TopNav, BottomNav } from "@/components/Navigation";
+import { useAuth } from "@/components/AuthContext";
 import { MarketplaceListing, ScanAssessment } from "@/lib/types";
 import { store } from "@/lib/store";
 import { formatIdr } from "@/lib/utils";
@@ -11,6 +12,7 @@ import { formatIdr } from "@/lib/utils";
 function CreateListingContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const { isAuthenticated } = useAuth();
   const scanId = searchParams.get("scanId");
 
   const [formData, setFormData] = useState({
@@ -26,6 +28,13 @@ function CreateListingContent() {
   );
   const [imagePreview, setImagePreview] = useState<string>("");
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      router.push("/login?redirect=/marketplace/create");
+      return;
+    }
+  }, [isAuthenticated, router]);
 
   useEffect(() => {
     if (scanId) {
